@@ -25,6 +25,7 @@ export default {
   ): KaraokeRankingQueryStore.State => {
     return {
       ...state,
+      loading: false,
       error: {
         message: "サーバ側で予期せぬエラーが発生しました。"
       }

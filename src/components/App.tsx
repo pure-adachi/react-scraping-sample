@@ -1,3 +1,4 @@
+import Loading from "./atoms/Loading";
 import { useKaraokeRankingQuery } from "../queries/karaoke-ranking";
 
 const App = () => {
@@ -5,7 +6,12 @@ const App = () => {
 
   console.log(loading, data, error);
 
-  return <div>App</div>;
+  return (
+    <>
+      <Loading isShow={loading || (!data && !error)} />
+      App
+    </>
+  );
 };
 
 export default App;
