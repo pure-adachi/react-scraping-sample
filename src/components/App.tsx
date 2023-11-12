@@ -1,16 +1,21 @@
 import Loading from "./atoms/Loading";
+import Title from "./atoms/Title";
 import { useKaraokeRankingQuery } from "../queries/karaoke-ranking";
 
 const App = () => {
   const { loading, data, error } = useKaraokeRankingQuery();
-
-  console.log(loading, data, error);
+  const isInPreparation = loading || (!data && !error);
+  const fadeOutTimeToLoading = 1000;
 
   return (
-    <>
-      <Loading isShow={loading || (!data && !error)} />
-      App
-    </>
+    <div className="h-full bg-amber-500">
+      <Loading
+        isShow={isInPreparation}
+        defaultFadeOutTime={fadeOutTimeToLoading}
+      />
+
+      {!isInPreparation && <Title delay={fadeOutTimeToLoading} />}
+    </div>
   );
 };
 

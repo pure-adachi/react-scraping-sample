@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 
-const FADE_OUT_TIME = 1000;
-
 interface Props {
   isShow: boolean;
+  defaultFadeOutTime?: number;
 }
 
-const Loading = ({ isShow }: Props) => {
+const Loading = ({ isShow, defaultFadeOutTime }: Props) => {
   const [displayed, setDisplayed] = useState(false);
+  const fadeOutTime = defaultFadeOutTime || 0;
 
   useEffect(() => {
     if (!displayed && isShow) {
@@ -18,7 +18,7 @@ const Loading = ({ isShow }: Props) => {
 
   useEffect(() => {
     if (displayed && !isShow) {
-      setTimeout(() => setDisplayed(false), FADE_OUT_TIME);
+      setTimeout(() => setDisplayed(false), fadeOutTime);
     }
   }, [isShow]);
 
@@ -31,7 +31,7 @@ const Loading = ({ isShow }: Props) => {
         "items-center",
         "justify-center",
         "transition-opacity",
-        `duration-${FADE_OUT_TIME}`,
+        `duration-${fadeOutTime}`,
         {
           "h-full": displayed,
           "w-full": displayed,
