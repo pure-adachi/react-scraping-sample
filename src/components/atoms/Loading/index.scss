@@ -1,0 +1,89 @@
+@function rand($min, $max) {
+  @return random() * ($max - $min) + $min;
+}
+
+$animation-duration: 3s; // 何秒おきにアニメーションをループするか
+$glitch-duration: 20%; // グリッチ (RGB ずらし) 自体の長さ、上記秒数に対するパーセンテージ
+$glitch-frequency: 10; // 動きの頻度
+$glitch-interval: $glitch-duration / $glitch-frequency;
+
+@mixin rgb-shift($name) {
+  @keyframes rgb-shift-#{$name} {
+    @for $i from 0 to $glitch-frequency {
+      #{$i * $glitch-interval} {
+        transform: translate(
+          #{rand(-2, 2) * 1%},
+          // 左右にどれぐらい動くか (横幅の±2%)
+          #{rand(-0.5, 0.5) *
+            1%}
+            // 上下にどれぐらい動くか (縦幅の±0.5%)
+        );
+      }
+    }
+
+    #{$glitch-duration},
+    100% {
+      transform: none;
+    }
+  }
+
+  animation: rgb-shift-#{$name} $animation-duration steps(1, jump-end) infinite alternate
+    both;
+}
+
+.glitch {
+  background: #000 no-repeat center;
+  background-size: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  .channel {
+    background: inherit;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .channel {
+    mix-blend-mode: screen;
+
+    &::before {
+      bottom: 0;
+      content: "";
+      display: block;
+      left: 0;
+      mix-blend-mode: multiply;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .r {
+    @include rgb-shift(r);
+
+    &::before {
+      background: #f00;
+    }
+  }
+
+  .g {
+    @include rgb-shift(g);
+
+    &::before {
+      background: #0f0;
+    }
+  }
+
+  .b {
+    @include rgb-shift(b);
+
+    &::before {
+      background: #00f;
+    }
+  }
+}

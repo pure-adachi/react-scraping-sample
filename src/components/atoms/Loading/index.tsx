@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
+import background from "./background.jpg";
+import "./index.scss";
 
 interface Props {
   isShow: boolean;
-  defaultFadeOutTime?: number;
 }
 
-const Loading = ({ isShow, defaultFadeOutTime }: Props) => {
+const Loading = ({ isShow }: Props) => {
   const [displayed, setDisplayed] = useState(false);
-  const fadeOutTime = defaultFadeOutTime || 0;
+  const [startCountDown, setStartCountDown] = useState(false);
+  const [count, setCount] = useState(3);
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     if (!displayed && isShow) {
@@ -18,35 +21,59 @@ const Loading = ({ isShow, defaultFadeOutTime }: Props) => {
 
   useEffect(() => {
     if (displayed && !isShow) {
-      setTimeout(() => setDisplayed(false), fadeOutTime);
+      setStartCountDown(true);
     }
   }, [isShow]);
+
+  useEffect(() => {
+    if (startCountDown) {
+      setTimeout(() => {
+        const decrementedCount = count - 1;
+
+        setCount(decrementedCount);
+
+        if (decrementedCount === 0) {
+          setStartCountDown(false);
+          setDisplayed(false);
+          setTimeout(() => setIsFinished(true), 1000);
+        }
+      }, 1000);
+    }
+  }, [startCountDown, count]);
+
+  if (isFinished) {
+    return <></>;
+  }
 
   return (
     <div
       className={classNames(
         "fixed",
+        "z-[999]",
+        "h-full",
+        "w-full",
         "bg-orange-50",
         "flex",
         "items-center",
         "justify-center",
         "transition-opacity",
-        `duration-${fadeOutTime}`,
+        "duration-1000",
         {
-          "h-full": displayed,
-          "w-full": displayed,
-          "z-50": displayed,
-          "h-0": !displayed,
-          "w-0": !displayed,
-          "z-0": !displayed,
-          "opacity-0": !isShow,
-          "opacity-100": isShow
-        }
+          "opacity-0": !displayed,
+          "opacity-100": displayed
+        },
+        "glitch"
       )}
+      style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="rounded-full bg-amber-800 h-5 w-5 animate-[pulse_2000ms_ease-in-out_100ms_infinite,bounce_1000ms_ease-in_100ms_infinite] mr-3" />
-      <div className="rounded-full bg-amber-800 h-5 w-5 animate-[pulse_2000ms_ease-in-out_200ms_infinite,bounce_1000ms_ease-in_200ms_infinite]  mr-3" />
-      <div className="rounded-full bg-amber-800 h-5 w-5 animate-[pulse_2000ms_ease-in-out_300ms_infinite,bounce_1000ms_ease-in_300ms_infinite]" />
+      <div className="channel r"></div>
+      <div className="channel g"></div>
+      <div className="channel b"></div>
+
+      <div className="fixed z-50 top-3 right-3 flex items-center justify-center">
+        <div className="animate-spin h-10 w-10 border-2 rounded-full border-t-transparent" />
+        {startCountDown && <div className="absolute text-white">{count}</div>}
+      </div>
     </div>
   );
 };
