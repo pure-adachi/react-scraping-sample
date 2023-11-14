@@ -13,12 +13,6 @@ export namespace KaraokeRankingQueryStore {
     rankings: Ranking[];
   } | null;
 
-  interface Ranking {
-    rank: number;
-    song: string;
-    artist: string;
-  }
-
   export type ResponseError = {
     message: string | null;
   } | null;
@@ -37,4 +31,10 @@ export namespace KaraokeRankingQueryStore {
   interface ErrorAction {
     type: "error";
   }
+}
+
+export interface Ranking {
+  rank: number;
+  song: string;
+  artist: string;
 }
