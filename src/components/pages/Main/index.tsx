@@ -25,7 +25,7 @@ const Main = ({ rankings }: Props) => {
           ))}
         </div>
       ) : (
-        <div className="text-slate-300 text-3xl md:text-5xl">トップ１０</div>
+        <div className="text-slate-300 text-3xl md:text-5xl">トップ２０</div>
       )}
     </div>
   );

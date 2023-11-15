@@ -3,13 +3,105 @@
   color: transparent;
 }
 
+.animate-ranking-part-20 {
+  @extend %animate-ranking-part;
+
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  font-size: 6rem;
+  width: 100%;
+  text-align: center;
+}
+
+.animate-ranking-part-19 {
+  @extend %animate-ranking-part;
+
+  left: 0%;
+  top: 10%;
+  font-size: 5rem;
+  width: 500px;
+}
+
+.animate-ranking-part-18 {
+  @extend %animate-ranking-part;
+
+  left: 80%;
+  top: 80%;
+  font-size: 2rem;
+  width: 200px;
+}
+
+.animate-ranking-part-17 {
+  @extend %animate-ranking-part;
+
+  left: 10%;
+  top: 80%;
+  font-size: 3rem;
+  width: 800px;
+}
+
+.animate-ranking-part-16 {
+  @extend %animate-ranking-part;
+
+  left: 40%;
+  top: 60%;
+  font-size: 1rem;
+  width: 100px;
+}
+
+.animate-ranking-part-15 {
+  @extend %animate-ranking-part;
+
+  left: 90%;
+  top: 20%;
+  font-size: 2rem;
+  width: 300px;
+}
+
+.animate-ranking-part-14 {
+  @extend %animate-ranking-part;
+
+  left: 30%;
+  top: -20%;
+  font-size: 2rem;
+  width: 500px;
+}
+
+.animate-ranking-part-13 {
+  @extend %animate-ranking-part;
+
+  left: 110%;
+  top: 90%;
+  font-size: 2rem;
+  width: 500px;
+}
+
+.animate-ranking-part-12 {
+  @extend %animate-ranking-part;
+
+  left: 20%;
+  top: 80%;
+  font-size: 2rem;
+  width: 900px;
+}
+
+.animate-ranking-part-11 {
+  @extend %animate-ranking-part;
+
+  left: 60%;
+  top: 60%;
+  font-size: 8rem;
+  width: 400px;
+}
+
 .animate-ranking-part-10 {
   @extend %animate-ranking-part;
 
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  font-size: 8rem;
+  font-size: 6rem;
   width: 400px;
   display: flex;
   flex-direction: column;
