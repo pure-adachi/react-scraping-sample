@@ -15,7 +15,7 @@ const Title = () => {
 
   return (
     <div className="fixed z-[998] top-0 left-0 h-full w-full flex items-center justify-center">
-      <div className="flex overflow-hidden font-serif text-3xl md:text-5xl text-sky-700 animate-[fade-out-title_300ms_linear_6000ms_forwards]">
+      <div className="flex overflow-hidden font-serif text-3xl md:text-5xl text-sky-700 animate-[fade-out_300ms_linear_6000ms_forwards]">
         <span className="translate-y-12 animate-[fade-in-title_2000ms_ease-in-out_600ms_forwards]">
           K
         </span>

@@ -4,7 +4,8 @@ module.exports = {
   safelist: [
     {
       pattern: /animate-ranking-part-([0-9]+)/
-    }
+    },
+    "animate-infinity-scroll-ranking"
   ],
   theme: {
     extend: {
@@ -35,12 +36,28 @@ module.exports = {
           "0%": { transform: "translateY(inherit)" },
           "100%": { transform: "translateY(0px)" }
         },
-        "fade-out-title": {
+        "fade-in": {
+          "0%": {
+            opacity: 0
+          },
+          "100%": {
+            opacity: 1
+          }
+        },
+        "fade-out": {
           "0%": {
             opacity: 1
           },
           "100%": {
             opacity: 0
+          }
+        },
+        "infinity-scroll-ranking": {
+          "0%": {
+            transform: "translateY(0vw)"
+          },
+          "100%": {
+            transform: "translateY(-100%)"
           }
         },
         "ranking-part-20": {
